@@ -1,46 +1,74 @@
+import { useState, useEffect } from "react";
+import { Box, Container, Typography, useTheme, useMediaQuery } from "@mui/material";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { projects } from "../data/projects";
 import ProjectCard from "../components/ProjectCard";
 
-function Projects() {
-  // Datos de ejemplo (después los cambias con tus proyectos reales)
-  const projects = [
-    {
-      title: "Portafolio Web",
-      description: "Sitio personal creado con React, Vite, Tailwind y Material UI.",
-      image: "https://source.unsplash.com/400x200/?website",
-    },
-    {
-      title: "App de Tareas",
-      description: "Aplicación de gestión de tareas con autenticación y base de datos.",
-      image: "https://source.unsplash.com/400x200/?code",
-    },
-    {
-      title: "Proyecto DevOps",
-      description: "Automatización de despliegues en la nube con CI/CD.",
-      image: "https://source.unsplash.com/400x200/?cloud",
-    },
-  ];
+export default function Projects() {
+  const [projectList, setProjectList] = useState([]);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  useEffect(() => {
+    setProjectList(projects);
+  }, []);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: isMobile ? 1 : 2,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
 
   return (
-    <section
-      id="projects"
-      className="min-h-screen bg-white px-6 py-16"
-    >
-      <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
-        Mis Proyectos
-      </h2>
-
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={index}
-            title={project.title}
-            description={project.description}
-            image={project.image}
-          />
-        ))}
-      </div>
-    </section>
+    <Box component="section" id="projects" sx={{ py: 8, bgcolor: 'background.default' }}>
+      <Container maxWidth="lg">
+        <Typography
+          variant="h3"
+          component="h2"
+          align="center"
+          gutterBottom
+          sx={{
+            mb: 6,
+            fontWeight: 'bold',
+            background: 'linear-gradient(45deg, #6366F1 30%, #9333EA 90%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}
+        >
+          Mis Proyectos
+        </Typography>
+        
+        <Slider {...settings}>
+          {projectList.map((proj) => (
+            <Box key={proj.id} sx={{ p: 2 }}>
+              <ProjectCard {...proj} />
+            </Box>
+          ))}
+        </Slider>
+      </Container>
+    </Box>
   );
 }
-
-export default Projects;

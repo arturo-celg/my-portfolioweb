@@ -1,35 +1,18 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
-function AboutCard({ image, title, description, extra }) {
+export default function AboutCard({ name, role, description, image }) {
   return (
-    <Card className="max-w-4xl flex flex-col md:flex-row shadow-2xl rounded-2xl overflow-hidden">
-      {/* Imagen lateral */}
-      <CardMedia
-        component="img"
-        className="md:w-1/3 object-cover"
-        image={image}
-        alt={title}
-      />
-
-      {/* Contenido */}
-      <CardContent className="flex flex-col justify-center p-8">
-        <Typography variant="h4" component="h2" gutterBottom>
-          {title}
-        </Typography>
-        <Typography variant="body1" color="text.secondary" className="mb-4">
-          {description}
-        </Typography>
-        {extra && (
-          <Typography variant="body1" color="text.secondary">
-            {extra}
-          </Typography>
-        )}
+    <Card sx={{ maxWidth: 360, mx: 'auto', bgcolor: 'background.paper', borderRadius: 3, boxShadow: 2 }}>
+      <CardContent sx={{ p: 3, textAlign: 'center' }}>
+        <Avatar src={image} alt={name} sx={{ width: 128, height: 128, mx: 'auto', mb: 2 }} />
+        <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{name}</Typography>
+        <Typography color="primary">{role}</Typography>
+        <Typography color="text.secondary" sx={{ mt: 1 }}>{description}</Typography>
       </CardContent>
     </Card>
   );
 }
-
-export default AboutCard;

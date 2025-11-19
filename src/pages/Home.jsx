@@ -1,29 +1,349 @@
-import Button from "@mui/material/Button";
+import { Button, Container, Box, Typography, Avatar } from "@mui/material";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { skills } from "../data/skills";
 
 function Home() {
+  const [currentPhrase, setCurrentPhrase] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const phrases = [
+    "Desarrollador Web Full Stack",
+    "Experto en React y Node.js",
+    "Especialista en DevOps y Cloud",
+    "Creador de soluciones innovadoras"
+  ];
+
+  // Obtener todas las tecnologías de skills
+  const techIcons = skills.technical.flatMap(cat => 
+    cat.items.map(item => ({ 
+      name: item.name, 
+      color: item.color,
+      displayName: item.displayName 
+    }))
+  ).slice(0, 8); // Limitar a 8 tecnologías
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 500);
+    
+    // Cambiar frase cada 3 segundos
+    const phraseInterval = setInterval(() => {
+      setCurrentPhrase((prev) => (prev + 1) % phrases.length);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(phraseInterval);
+    };
+  }, []);
+
   return (
-    <section
+    <Box
+      component="section"
       id="home"
-      className="h-screen flex flex-col justify-center items-center bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-center px-6"
+      sx={{
+        minHeight: '100vh',
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+        background: 'linear-gradient(45deg, #6366F1, #9333EA)',
+        backgroundSize: '200% 200%',
+        animation: 'gradient 15s ease infinite',
+        padding: 0,
+        margin: 0,
+      }}
     >
-      <h1 className="text-5xl md:text-6xl font-extrabold">
-        ¡Hola, soy <span className="text-yellow-300">Arturo</span> 👋
-      </h1>
-      <p className="mt-4 text-lg md:text-xl max-w-2xl">
-        Desarrollador Web con experiencia en React, DevOps y soluciones en la nube.
-      </p>
-      <div className="mt-6">
-        <Button
-          variant="contained"
-          color="secondary"
-          size="large"
-          href="#projects"
-          className="rounded-full shadow-lg"
+      {/* Fondo animado */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          overflow: 'hidden',
+          zIndex: 0,
+          opacity: 0.6,
+        }}
+      >
+        {[...Array(20)].map((_, index) => (
+          <motion.div
+            key={index}
+            style={{
+              position: 'absolute',
+              background: 'rgba(255, 255, 255, 0.1)',
+              borderRadius: '50%',
+              width: Math.random() * 20 + 10,
+              height: Math.random() * 20 + 10,
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -100, 0],
+              x: [0, Math.random() * 100 - 50, 0],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: Math.random() * 2 + 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+      </Box>
+
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 4,
+            py: { xs: 4, md: 8 },
+            color: 'white',
+          }}
         >
-          Ver mis proyectos
-        </Button>
-      </div>
-    </section>
+          {/* Columna Izquierda - Texto */}
+          <Box
+            sx={{
+              flex: 1,
+              textAlign: { xs: 'center', md: 'left' },
+              order: { xs: 2, md: 1 },
+            }}
+          >
+            <motion.div
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              <Typography
+                component="h1"
+                sx={{
+                  fontSize: { xs: '2.5rem', sm: '3rem', md: '4rem' },
+                  fontWeight: 800,
+                  mb: 3,
+                  letterSpacing: '0.02em',
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.2)',
+                }}
+              >
+                ¡Hola, soy{' '}
+                <motion.span
+                  style={{ color: '#FDE68A' }}
+                  animate={{ 
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 3
+                  }}
+                >
+                  Arturo
+                </motion.span>{' '}
+                <motion.span
+                  animate={{ 
+                    rotate: [0, 14, -8, 14, 0],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatDelay: 2
+                  }}
+                  style={{ display: 'inline-block' }}
+                >
+                  👋
+                </motion.span>
+              </Typography>
+
+              {/* Frase que cambia con transición */}
+              <Box sx={{ minHeight: '80px', mb: 4 }}>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentPhrase}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -20, opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        fontSize: { xs: '1.2rem', sm: '1.4rem', md: '1.5rem' },
+                        lineHeight: 1.6,
+                        textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
+                        fontWeight: 500,
+                      }}
+                    >
+                      {phrases[currentPhrase]}
+                    </Typography>
+                  </motion.div>
+                </AnimatePresence>
+              </Box>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  size="large"
+                  href="#projects"
+                  sx={{
+                    borderRadius: '9999px',
+                    px: 4,
+                    py: 1.5,
+                    fontSize: { xs: '1rem', sm: '1.1rem' },
+                    fontWeight: 600,
+                    backdropFilter: 'blur(8px)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    color: 'white',
+                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                    transition: 'all 0.2s ease-in-out',
+                    '&:hover': {
+                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                      transform: 'translateY(-2px)',
+                      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.2)',
+                    },
+                  }}
+                >
+                  Ver mis proyectos
+                </Button>
+              </motion.div>
+            </motion.div>
+          </Box>
+
+          {/* Columna Derecha - Foto con tecnologías orbitando */}
+          <Box
+            sx={{
+              flex: 1,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              position: 'relative',
+              order: { xs: 1, md: 2 },
+              minHeight: { xs: '300px', md: '400px' },
+            }}
+          >
+            {/* Contenedor de la foto */}
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 20,
+              }}
+            >
+              <Box
+                sx={{
+                  position: 'relative',
+                  width: { xs: 200, md: 250 },
+                  height: { xs: 200, md: 250 },
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    inset: -3,
+                    padding: 3,
+                    background: 'linear-gradient(45deg, #FDE68A, #93C5FD)',
+                    borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%',
+                    animation: 'borderRotate 8s linear infinite',
+                  },
+                }}
+              >
+                <Avatar
+                  src="/tu-foto.jpg"
+                  alt="Arturo"
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                    border: '4px solid rgba(255,255,255,0.2)',
+                    backgroundColor: 'rgba(255,255,255,0.1)',
+                    backdropFilter: 'blur(8px)',
+                  }}
+                />
+              </Box>
+            </motion.div>
+
+            {/* Iconos de tecnologías orbitando */}
+            {techIcons.map((tech, index) => {
+              const totalIcons = techIcons.length;
+              const radius = 160; // 👈 Radio de la órbita (distancia desde el centro)
+              const angleOffset = (index / totalIcons) * 360;
+              
+              return (
+                <motion.div
+                  key={tech.name}
+                  style={{
+                    position: 'absolute',
+                    left: '50%',        // 👈 Centro horizontal
+                    top: '50%',         // 👈 Centro vertical (ajusta aquí: más % = más abajo)
+                    marginLeft: -25,    // 👈 Ajuste fino horizontal (negativo = izquierda)
+                    marginTop: -25,     // 👈 Ajuste fino vertical (negativo = arriba, positivo = abajo)
+                  }}
+                  animate={{
+                    rotate: [angleOffset, angleOffset + 360],
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear",
+                    repeatType: "loop",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      left: radius,
+                      top: 0,
+                    }}
+                  >
+                    <motion.div
+                      animate={{
+                        rotate: [-angleOffset, -angleOffset - 360],
+                      }}
+                      transition={{
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "linear",
+                        repeatType: "loop",
+                      }}
+                      whileHover={{ scale: 1.3 }}
+                      style={{
+                        width: 50,
+                        height: 50,
+                        background: 'rgba(255, 255, 255, 0.9)',
+                        borderRadius: '12px',
+                        padding: '8px',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <Box
+                        component="img"
+                        src={`https://cdn.simpleicons.org/${tech.name}/${tech.color}`}
+                        alt={tech.displayName}
+                        sx={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                        }}
+                      />
+                    </motion.div>
+                  </Box>
+                </motion.div>
+              );
+            })}
+          </Box>
+        </Box>
+      </Container>
+    </Box>
   );
 }
 
