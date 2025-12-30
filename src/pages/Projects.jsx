@@ -1,19 +1,23 @@
 import { useState, useEffect } from "react";
-import { Box, Container, Typography, useTheme, useMediaQuery } from "@mui/material";
+import { Box, Container, Typography, useTheme, useMediaQuery, Chip, Stack } from "@mui/material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { projects } from "../data/projects";
+import { getProjects } from "../data/projects";
 import ProjectCard from "../components/ProjectCard";
+import { useTranslation } from "react-i18next";
 
 export default function Projects() {
   const [projectList, setProjectList] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState('all');
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language?.startsWith('en') ? 'en' : 'es';
 
   useEffect(() => {
-    setProjectList(projects);
-  }, []);
+    setProjectList(getProjects(lang));
+  }, [lang]);
 
   const settings = {
     dots: true,
@@ -43,7 +47,11 @@ export default function Projects() {
   };
 
   return (
-    <Box component="section" id="projects" sx={{ py: 8, bgcolor: 'background.default' }}>
+    <Box
+      component="section"
+      id="projects"
+      sx={{ py: 8, bgcolor: 'background.default', scrollMarginTop: { xs: '56px', sm: '64px' } }}
+    >
       <Container maxWidth="lg">
         <Typography
           variant="h3"
@@ -58,11 +66,32 @@ export default function Projects() {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Mis Proyectos
+          {t('projects.title')}
         </Typography>
+
+        {/* Filtros por categoría */}
+        <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 4, flexWrap: 'wrap' }}>
+          {[
+            { key: 'all' },
+            { key: 'personal' },
+            { key: 'academico' },
+            { key: 'laboral' },
+          ].map((cat) => (
+            <Chip
+              key={cat.key}
+              label={t(`projects.categories.${cat.key}`)}
+              clickable
+              color={categoryFilter === cat.key ? 'primary' : 'default'}
+              onClick={() => setCategoryFilter(cat.key)}
+              sx={{ fontWeight: categoryFilter === cat.key ? 700 : 500 }}
+            />
+          ))}
+        </Stack>
         
         <Slider {...settings}>
-          {projectList.map((proj) => (
+          {projectList
+            .filter((p) => categoryFilter === 'all' || p.category === categoryFilter)
+            .map((proj) => (
             <Box key={proj.id} sx={{ p: 2 }}>
               <ProjectCard {...proj} />
             </Box>

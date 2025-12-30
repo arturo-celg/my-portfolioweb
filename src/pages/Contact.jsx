@@ -4,8 +4,10 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { useTranslation } from "react-i18next";
 
 function Contact() {
+  const { t } = useTranslation();
   return (
     <Box
       component="section"
@@ -23,17 +25,17 @@ function Contact() {
       <Card sx={{ width: '100%', maxWidth: 672, boxShadow: 3, borderRadius: 3 }}>
         <CardContent sx={{ p: 4 }}>
           <Typography variant="h4" component="h2" gutterBottom>
-            Contáctame
+            {t('contact.title')}
           </Typography>
           <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
-            Si tienes alguna propuesta, proyecto o solo quieres saludar, llena el formulario 👇
+            {t('contact.subtitle')}
           </Typography>
 
           <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-            <TextField label="Nombre" variant="outlined" fullWidth required />
-            <TextField label="Correo" variant="outlined" type="email" fullWidth required />
+            <TextField label={t('contact.name')} variant="outlined" fullWidth required />
+            <TextField label={t('contact.email')} variant="outlined" type="email" fullWidth required />
             <TextField
-              label="Mensaje"
+              label={t('contact.message')}
               variant="outlined"
               multiline
               rows={4}
@@ -47,7 +49,7 @@ function Contact() {
               size="large"
               sx={{ alignSelf: 'flex-end' }}
             >
-              Enviar
+              {t('contact.submit')}
             </Button>
           </Box>
         </CardContent>

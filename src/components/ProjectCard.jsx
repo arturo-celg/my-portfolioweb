@@ -23,7 +23,8 @@ export default function ProjectCard({
   image, // Soporte para la propiedad antigua
   technologies = [], // Valor por defecto vacío
   link, 
-  github 
+  github,
+  category
 }) {
   // Convertir la imagen antigua al nuevo formato si es necesario
   const imageList = images || (image ? [image] : ["/placeholder.jpg"]);
@@ -57,6 +58,26 @@ export default function ProjectCard({
         }}
       >
         <Box sx={{ position: 'relative', height: 250 }}>
+          {/* Etiqueta de categoría */}
+          {category && (
+            <Chip
+              label={
+                category === 'personal' ? 'Personal' :
+                category === 'academico' ? 'Académico' :
+                category === 'laboral' ? 'Laboral' : category
+              }
+              size="small"
+              sx={{
+                position: 'absolute',
+                top: 12,
+                left: 12,
+                zIndex: 2,
+                bgcolor: 'rgba(0,0,0,0.6)',
+                color: 'white',
+                '& .MuiChip-label': { fontWeight: 600 }
+              }}
+            />
+          )}
           <AnimatePresence mode="wait">
             <motion.img
               key={currentImageIndex}

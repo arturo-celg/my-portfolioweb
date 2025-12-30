@@ -1,13 +1,15 @@
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
+import { useTranslation } from "react-i18next";
 
 function Footer() {
+  const { t } = useTranslation();
   return (
     <Box component="footer" sx={{ backgroundColor: '#111827', color: '#fff', py: 8, mt: 6 }}>
       <Box sx={{ maxWidth: 1152, mx: 'auto', display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-between', alignItems: 'center', px: 3 }}>
         <Typography variant="body1" sx={{ mb: { xs: 2, md: 0 } }}>
-          © 2025 Arturo CL. Todos los derechos reservados.
+          {t('footer.rights')}
         </Typography>
 
         <Box sx={{ display: 'flex', gap: 3 }}>

@@ -1,13 +1,25 @@
-import { Button, Container, Box, Typography, Avatar } from "@mui/material";
+import { Button, Container, Box, Typography, Avatar, useTheme, useMediaQuery } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { skills } from "../data/skills";
+import { useTranslation } from "react-i18next";
 
 function Home() {
+  // Hook para detectar tamaño de pantalla
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  
   const [currentPhrase, setCurrentPhrase] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const { t } = useTranslation();
+  
+  // 🎯 Radio responsivo para la órbita
+  const orbitRadius = isMobile ? 110 : isTablet ? 140 : 160;
+  // 🎯 Tamaño de iconos responsivo
+  const iconSize = isMobile ? 35 : isTablet ? 42 : 50;
 
-  const phrases = [
+  const phrases = t('home.phrases', { returnObjects: true }) ?? [
     "Desarrollador Web Full Stack",
     "Experto en React y Node.js",
     "Especialista en DevOps y Cloud",
@@ -18,8 +30,8 @@ function Home() {
   const techIcons = skills.technical.flatMap(cat => 
     cat.items.map(item => ({ 
       name: item.name, 
-      color: item.color,
-      displayName: item.displayName 
+      displayName: item.displayName,
+      icon8Name: item.icon8Name 
     }))
   ).slice(0, 8); // Limitar a 8 tecnologías
 
@@ -44,6 +56,7 @@ function Home() {
       sx={{
         minHeight: '100vh',
         width: '100%',
+        maxWidth: '100vw',  // 🔧 Prevenir overflow
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
@@ -94,7 +107,7 @@ function Home() {
         ))}
       </Box>
 
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1, maxWidth: '100%' }}>
         <Box
           sx={{
             display: 'flex',
@@ -129,7 +142,7 @@ function Home() {
                   textShadow: '2px 2px 4px rgba(0,0,0,0.2)',
                 }}
               >
-                ¡Hola, soy{' '}
+                {t('home.greeting')}{' '}
                 <motion.span
                   style={{ color: '#FDE68A' }}
                   animate={{ 
@@ -141,7 +154,7 @@ function Home() {
                     repeatDelay: 3
                   }}
                 >
-                  Arturo
+                {t('home.name')}{' '}
                 </motion.span>{' '}
                 <motion.span
                   animate={{ 
@@ -211,7 +224,7 @@ function Home() {
                     },
                   }}
                 >
-                  Ver mis proyectos
+                  {t('home.buttonProjects')}
                 </Button>
               </motion.div>
             </motion.div>
@@ -226,7 +239,8 @@ function Home() {
               alignItems: 'center',
               position: 'relative',
               order: { xs: 1, md: 2 },
-              minHeight: { xs: '300px', md: '400px' },
+              minHeight: { xs: '280px', sm: '320px', md: '400px' },
+              maxWidth: '100%',  // 🔧 Prevenir overflow
             }}
           >
             {/* Contenedor de la foto */}
@@ -242,8 +256,8 @@ function Home() {
               <Box
                 sx={{
                   position: 'relative',
-                  width: { xs: 200, md: 250 },
-                  height: { xs: 200, md: 250 },
+                  width: { xs: 150, sm: 200, md: 250 },
+                  height: { xs: 150, sm: 200, md: 250 },
                   '&::before': {
                     content: '""',
                     position: 'absolute',
@@ -269,10 +283,9 @@ function Home() {
               </Box>
             </motion.div>
 
-            {/* Iconos de tecnologías orbitando */}
+            {/* Iconos de tecnologías orbitando - 🎯 RESPONSIVE */}
             {techIcons.map((tech, index) => {
               const totalIcons = techIcons.length;
-              const radius = 160; // 👈 Radio de la órbita (distancia desde el centro)
               const angleOffset = (index / totalIcons) * 360;
               
               return (
@@ -280,10 +293,10 @@ function Home() {
                   key={tech.name}
                   style={{
                     position: 'absolute',
-                    left: '50%',        // 👈 Centro horizontal
-                    top: '50%',         // 👈 Centro vertical (ajusta aquí: más % = más abajo)
-                    marginLeft: -25,    // 👈 Ajuste fino horizontal (negativo = izquierda)
-                    marginTop: -25,     // 👈 Ajuste fino vertical (negativo = arriba, positivo = abajo)
+                    left: '50%',
+                    top: '50%',
+                    marginLeft: -(iconSize / 2),  // 🔧 Centrado dinámico
+                    marginTop: -(iconSize / 2),   // 🔧 Centrado dinámico
                   }}
                   animate={{
                     rotate: [angleOffset, angleOffset + 360],
@@ -298,7 +311,7 @@ function Home() {
                   <Box
                     sx={{
                       position: 'absolute',
-                      left: radius,
+                      left: orbitRadius,  // 🎯 Radio responsivo
                       top: 0,
                     }}
                   >
@@ -312,13 +325,13 @@ function Home() {
                         ease: "linear",
                         repeatType: "loop",
                       }}
-                      whileHover={{ scale: 1.3 }}
+                      whileHover={{ scale: 1.2 }}
                       style={{
-                        width: 50,
-                        height: 50,
+                        width: iconSize,   // 🎯 Tamaño responsivo
+                        height: iconSize,  // 🎯 Tamaño responsivo
                         background: 'rgba(255, 255, 255, 0.9)',
                         borderRadius: '12px',
-                        padding: '8px',
+                        padding: '6px',
                         boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
                         display: 'flex',
                         alignItems: 'center',
@@ -327,7 +340,7 @@ function Home() {
                     >
                       <Box
                         component="img"
-                        src={`https://cdn.simpleicons.org/${tech.name}/${tech.color}`}
+                        src={`https://img.icons8.com/color/48/${tech.icon8Name}.png`}
                         alt={tech.displayName}
                         sx={{
                           width: '100%',
