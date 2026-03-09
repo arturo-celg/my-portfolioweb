@@ -9,7 +9,6 @@ export const skills = {
         { name: "dotnet", displayName: { es: ".NET", en: ".NET" }, icon8Name: "net-framework" },
         { name: "sql", displayName: { es: "SQL Server", en: "SQL Server" }, icon8Name: "microsoft-sql-server" },
         { name: "python", displayName: { es: "Python", en: "Python" }, icon8Name: "python" },
-        { name: "php", displayName: { es: "PHP", en: "PHP" }, icon8Name: "php" },
         { name: "java", displayName: { es: "Java", en: "Java" }, icon8Name: "java-coffee-cup-logo--v1" }
       ]
     },

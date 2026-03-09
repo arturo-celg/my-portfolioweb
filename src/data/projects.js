@@ -7,9 +7,9 @@ export const projects = [
     description: { es: ".", en: "." },
     images: ["/projects/portfolio-1.png", "/projects/portfolio-2.png", "/projects/portfolio-3.png"],
     technologies: ["React", "Tailwind CSS", "Framer Motion"],
-    category: "personal",
     link: "https://github.com/tuusuario/portfolio",
     demo: "https://tu-portfolio.com",
+    showLink: true,
   },
   {
     id: 2,
@@ -17,9 +17,9 @@ export const projects = [
     description: { es: "Aplicación CRUD para gestionar tareas.", en: "CRUD app to manage tasks." },
     images: ["/projects/todo.png"],
     technologies: ["React", "Node.js", "MongoDB"],
-    category: "academico",
     link: "https://github.com/tuusuario/todo-app",
     demo: "https://todo-app-demo.com",
+    showLink: true,
   },
   {
     id: 3,
@@ -27,9 +27,9 @@ export const projects = [
     description: { es: "Aplicación de chat con características en tiempo real.", en: "Chat app with real-time features." },
     images: ["/projects/chat.png"],
     technologies: ["Socket.io", "Express", "React"],
-    category: "personal",
     link: "https://github.com/tuusuario/chat-app",
     demo: "https://chat-app-demo.com",
+    showLink: true,
   },
   {
     id: 4,
@@ -37,9 +37,9 @@ export const projects = [
     description: { es: "Tienda en línea con carrito de compras y pasarela de pago.", en: "Online store with cart and payment gateway." },
     images: ["/projects/ecommerce.png"],
     technologies: ["Next.js", "Stripe", "MongoDB"],
-    category: "laboral",
     link: "https://github.com/tuusuario/ecommerce",
     demo: "https://ecommerce-demo.com",
+    showLink: false,
   },
 ];
 

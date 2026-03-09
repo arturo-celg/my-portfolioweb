@@ -18,7 +18,7 @@ function App() {
       <Home />
       <About />
       <Projects />
-      <Contact />
+      {/* <Contact /> */}
       <Footer />
       <LanguageSwitcher sx={{ position: 'fixed', bottom: 16, right: 16, zIndex: 1300 }} />
     </>

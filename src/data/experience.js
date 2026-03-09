@@ -28,21 +28,13 @@ export const experienceData = {
   education: [
     {
       degree: { es: "Ingeniería en Sistemas Computacionales", en: "Computer Systems Engineering" },
-      institution: { es: "Escuela Superior de Cómputo, IPN", en: "Escuela Superior de Cómputo, IPN" },
+      institution: { es: "Escuela Superior de Cómputo, Instituto Politécnico Nacional", en: "Escuela Superior de Cómputo, Instituto Politécnico Nacional" },
       period: { es: "2019 - 2024", en: "2019 - 2024" },
-      description: {
-        es: "Desarrollar sistemas computacionales de acuerdo a procesos de diseño, estándares de calidad y optimización de procesos.",
-        en: "Develop computer systems according to design processes, quality standards, and process optimization.",
-      }
     },
     {
       degree: { es: "Técnico Profesional en Sistemas Digitales", en: "Professional Technician in Digital Systems" },
-      institution: { es: "CECYT No. 1 \"Gonzalo Vázquez Vela\" IPN", en: "CECYT No. 1 \"Gonzalo Vázquez Vela\" IPN" },
+      institution: { es: "CECYT No. 1 \"Gonzalo Vázquez Vela\", Instituto Politécnico Nacional", en: "CECYT No. 1 \"Gonzalo Vázquez Vela\", Instituto Politécnico Nacional" },
       period: { es: "2016 - 2019", en: "2016 - 2019" },
-      description: {
-        es: "Desarrollar sistemas prácticos mediante el análisis, interpretación y programación de dispositivos electrónicos para la implementación de aplicaciones de automatización y control de procesos.",
-        en: "Develop practical systems through analysis, interpretation, and programming of electronic devices to implement automation and process control applications.",
-      }
     }
   ]
 };
@@ -51,12 +43,16 @@ export function getExperience(lang = "es") {
   const pick = (obj) => (obj && typeof obj === "object" ? obj[lang] ?? obj.es ?? obj.en : obj);
   return {
     work: experienceData.work.map((w) => ({
-      title: pick(w.title), company: pick(w.company), period: pick(w.period),
-      description: pick(w.description), technologies: w.technologies,
+      title: pick(w.title), 
+      company: pick(w.company), 
+      period: pick(w.period),
+      description: pick(w.description), 
+      technologies: w.technologies,
     })),
     education: experienceData.education.map((e) => ({
-      degree: pick(e.degree), institution: pick(e.institution),
-      period: pick(e.period), description: pick(e.description),
+      degree: pick(e.degree), 
+      institution: pick(e.institution),
+      period: pick(e.period), 
     })),
   };
 }

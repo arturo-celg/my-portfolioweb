@@ -6,7 +6,7 @@ export const navLinks = [
   { id: 3, label: { es: "Certificaciones", en: "Certifications" }, href: "#certifications" },
   { id: 4, label: { es: "Habilidades", en: "Skills" }, href: "#skills" },
   { id: 5, label: { es: "Proyectos", en: "Projects" }, href: "#projects" },
-  { id: 6, label: { es: "Contacto", en: "Contact" }, href: "#contact" },
+  //{ id: 6, label: { es: "Contacto", en: "Contact" }, href: "#contact" },
 ];
 
 export function getNavLinks(lang = 'es') {

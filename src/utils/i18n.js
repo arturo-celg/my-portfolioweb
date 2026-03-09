@@ -25,7 +25,7 @@ const resources = {
         buttonProjects: "Ver mis proyectos",
       },
       projects: {
-        title: "Mis Proyectos",
+        title: "Proyectos",
         categories: { all: "Todos", personal: "Personal", academico: "Académico", laboral: "Laboral" },
       },
       contact: {
@@ -61,7 +61,7 @@ const resources = {
         buttonProjects: "See my projects",
       },
       projects: {
-        title: "My Projects",
+        title: "Projects",
         categories: { all: "All", personal: "Personal", academico: "Academic", laboral: "Work" },
       },
       contact: {

@@ -16,16 +16,19 @@ import {
   NavigateBefore
 } from '@mui/icons-material';
 
-export default function ProjectCard({ 
-  title, 
-  description, 
-  images, 
-  image, // Soporte para la propiedad antigua
-  technologies = [], // Valor por defecto vacío
-  link, 
-  github,
-  category
-}) {
+export default function ProjectCard(props) {
+  const {
+    demo,
+    link,
+    showLink = true,
+    title, 
+    description, 
+    images, 
+    image, // Soporte para la propiedad antigua
+    technologies = [], // Valor por defecto vacío
+    category,
+  } = props;
+
   // Convertir la imagen antigua al nuevo formato si es necesario
   const imageList = images || (image ? [image] : ["/placeholder.jpg"]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -213,19 +216,14 @@ export default function ProjectCard({
             ))}
           </Box>
 
-          <Box sx={{ 
-            display: 'flex', 
-            gap: 2, 
-            mt: 2,
-            justifyContent: 'flex-start' 
-          }}>
-            {link && (
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            {demo && (
               <motion.div whileHover={{ scale: 1.1 }}>
                 <Button 
                   variant="contained" 
                   color="primary"
                   startIcon={<Language />}
-                  href={link}
+                  href={demo}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -234,13 +232,13 @@ export default function ProjectCard({
               </motion.div>
             )}
             
-            {github && (
+            {showLink && link && (
               <motion.div whileHover={{ scale: 1.1 }}>
                 <Button
                   variant="outlined"
                   color="primary"
                   startIcon={<GitHub />}
-                  href={github}
+                  href={link}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

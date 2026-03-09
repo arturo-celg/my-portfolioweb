@@ -111,106 +111,97 @@ export default function About() {
                       <Box
                         sx={{
                           display: 'grid',
-                          gridTemplateColumns: {
-                            xs: '1fr',
-                            sm: 'repeat(3, 1fr)',
-                            md: 'repeat(3, 1fr)',
-                          },
-                          gap: { xs: 2, sm: 3, md: 4 }
+                          gridTemplateColumns: { xs: '1fr', md: '320px 1fr', lg: '360px 1fr' },
+                          gap: { xs: 3, md: 4 },
+                          alignItems: 'start',
                         }}
                       >
-                        <Box>
-                          {/* Información Personal */}
-                          <Typography variant="h4" sx={{ mb: 1, fontWeight: "bold" }}>
-                            Arturo CL
-                          </Typography>
-                          <Typography variant="h5" color="primary" sx={{ mb: 3 }}>
-                            Software Developer
-                          </Typography>
-                          <Box sx={{ width: '100%' }}>
-                            <AboutCard {...info} />
+                        {/* Información Personal */}
+                        <Box sx={{ width: '100%' }}>
+                          <AboutCard {...info} />
+                        </Box>
+
+                        {/* Educación + Experiencia */}
+                        <Box
+                          sx={{
+                            display: 'grid',
+                            gridTemplateColumns: { xs: '1fr', lg: '1fr 1fr' },
+                            gap: { xs: 3, lg: 4 },
+                          }}
+                        >
+                          <Box>
+                            {/* Educación */}
+                            <Typography
+                              variant="h5"
+                              sx={{
+                                mb: 2.5,
+                                fontWeight: "bold",
+                                color: "primary.main",
+                                borderBottom: '3px solid',
+                                borderColor: 'primary.main',
+                                pb: 1,
+                                textAlign: { xs: 'left', sm: 'center', lg: 'left' },
+                              }}
+                            >
+                              {t('education')}
+                            </Typography>
+                            {experience.education.map((edu, index) => (
+                              <Box key={index} sx={{ mb: 2.5 }}>
+                                <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
+                                  {edu.degree}
+                                </Typography>
+                                <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 0.25 }}>
+                                  {edu.period}
+                                </Typography>
+                                <Typography variant="subtitle1" color="primary">
+                                  {edu.institution}
+                                </Typography>
+                              </Box>
+                            ))}
                           </Box>
-                        </Box>
-                        <Box>
-                          {/* Educación */}
-                          <Typography
-                            variant="h5"
-                            sx={{
-                              mb: 3,
-                              fontWeight: "bold",
-                              color: "primary.main",
-                              borderBottom: '3px solid',
-                              borderColor: 'primary.main',
-                              pb: 1.5,
-                              textAlign: 'center'
-                            }}
-                          >
-                            {t('education')}
-                          </Typography>
-                          {experience.education.map((edu, index) => (
-                            <Box key={index} sx={{ mb: 3 }}>
-                              <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>
-                                {edu.degree}
-                              </Typography>
-                              <Typography variant="subtitle1" color="primary" sx={{ mb: 0.5 }}>
-                                {edu.institution}
-                              </Typography>
-                              <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 1.5 }}>
-                                {edu.period}
-                              </Typography>
-                              <Typography variant="body2" color="text.secondary">
-                                {edu.description}
-                              </Typography>
-                            </Box>
-                          ))}
-                        </Box>
-                        <Box>
-                          {/* Experiencia Laboral */}
-                          <Typography
-                            variant="h5"
-                            sx={{
-                              mb: 3,
-                              fontWeight: "bold",
-                              color: "primary.main",
-                              borderBottom: '3px solid',
-                              borderColor: 'primary.main',
-                              pb: 1.5,
-                              textAlign: 'center'
-                            }}
-                          >
-                            {t('workExperience')}
-                          </Typography>
-                          {experience.work.map((job, index) => (
-                            <Box key={index} sx={{ mb: 3 }}>
-                              <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>
-                                {job.title}
-                              </Typography>
-                              <Typography variant="subtitle1" color="primary" sx={{ mb: 0.5 }}>
-                                {job.company}
-                              </Typography>
-                              <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 1.5 }}>
-                                {job.period}
-                              </Typography>
-                              <Box component="ul" sx={{ pl: 2.5, mb: 2 }}>
-                                {job.description.map((item, i) => (
-                                  <Typography component="li" key={i} variant="body2" sx={{ mb: 0.75 }}>
-                                    {item}
-                                  </Typography>
-                                ))}
+
+                          <Box>
+                            {/* Experiencia Laboral */}
+                            <Typography
+                              variant="h5"
+                              sx={{
+                                mb: 2.5,
+                                fontWeight: "bold",
+                                color: "primary.main",
+                                borderBottom: '3px solid',
+                                borderColor: 'primary.main',
+                                pb: 1,
+                                textAlign: { xs: 'left', sm: 'center', lg: 'left' },
+                              }}
+                            >
+                              {t('workExperience')}
+                            </Typography>
+                            {experience.work.map((job, index) => (
+                              <Box key={index} sx={{ mb: 3 }}>
+                                <Typography variant="h6" sx={{ mb: 0.5, fontWeight: 600 }}>
+                                  {job.title}
+                                </Typography>
+                                <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 0.25 }}>
+                                  {job.period}
+                                </Typography>
+                                <Typography variant="subtitle1" color="primary" sx={{ mb: 1 }}>
+                                  {job.company}
+                                </Typography>
+                                <Box component="ul" sx={{ pl: 2.5, mb: 1.5 }}>
+                                  {job.description.map((item, i) => (
+                                    <Typography component="li" key={i} variant="body2" sx={{ mb: 0.5 }}>
+                                      {item}
+                                    </Typography>
+                                  ))}
+                                </Box>
+                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                                  {job.technologies.map((tech) => (
+                                    <Chip key={tech} label={tech} size="small" color="primary" variant="outlined" />
+                                  ))}
+                                </Box>
                               </Box>
-                              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                                {job.technologies.map((tech) => (
-                                  <Chip
-                                    key={tech}
-                                    label={tech}
-                                    size="small"
-                                    color="primary"
-                                    variant="outlined"
-                                  />
-                                ))}
-                              </Box>
-                            </Box>
-                          ))}
+                            ))}
+                          </Box>
                         </Box>
                       </Box>
                     </CardContent>

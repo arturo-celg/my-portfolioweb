@@ -80,7 +80,7 @@ function Navbar() {
                 letterSpacing: '.1rem',
               }}
             >
-              ARTURO.DEV
+              ARTURO CL
             </Typography>
 
             {/* Menú Desktop */}

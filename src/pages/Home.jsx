@@ -26,14 +26,29 @@ function Home() {
     "Creador de soluciones innovadoras"
   ];
 
-  // Obtener todas las tecnologías de skills
-  const techIcons = skills.technical.flatMap(cat => 
-    cat.items.map(item => ({ 
-      name: item.name, 
+  const selectedTechNames = [
+    'csharp',
+    'dotnet',
+    'sql',
+    'python',
+    'java',
+    'javascript',
+    'react',
+    'vue',
+  ];
+
+  const allTechItems = skills.technical.flatMap((category) => category.items);
+  const techByName = new Map(allTechItems.map((item) => [item.name, item]));
+
+  const techIcons = selectedTechNames
+    .map((techName) => techByName.get(techName))
+    .filter(Boolean)
+    .map((item) => ({
+      name: item.name,
       displayName: item.displayName,
-      icon8Name: item.icon8Name 
-    }))
-  ).slice(0, 8); // Limitar a 8 tecnologías
+      icon8Name: item.icon8Name,
+      iconUrl: item.iconUrl,
+    }));
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 500);
@@ -270,7 +285,7 @@ function Home() {
                 }}
               >
                 <Avatar
-                  src="/tu-foto.jpg"
+                  src="/src/assets/foto.jpg"
                   alt="Arturo"
                   sx={{
                     width: '100%',
