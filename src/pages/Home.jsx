@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { skills } from "../data/skills";
 import { useTranslation } from "react-i18next";
-import foto from '../assets/foto.jpg';
+import animatedPhoto from '../assets/animatedPhoto.png';
 
 function Home() {
   // Hook para detectar tamaño de pantalla
@@ -29,13 +29,13 @@ function Home() {
 
   const selectedTechNames = [
     'csharp',
-    'dotnet',
+    'server-admin',
     'sql',
     'python',
-    'java',
+    'reporting', 
     'javascript',
     'react',
-    'vue',
+    'database-admin',
   ];
 
   const allTechItems = skills.technical.flatMap((category) => category.items);
@@ -286,7 +286,7 @@ function Home() {
                 }}
               >
                 <Avatar
-                  src={foto}
+                  src={animatedPhoto}
                   alt="Arturo"
                   sx={{
                     width: '100%',

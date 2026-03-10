@@ -65,6 +65,7 @@ export const skills = {
     { name: { es: "Developer Certification - HCCDA - Tech Essentials", en: "Developer Certification - HCCDA - Tech Essentials" }, issuer: "Huawei Cloud", date: "2024" },
     { name: { es: "Identity & Access Management (IAM) Bootcamp", en: "Identity & Access Management (IAM) Bootcamp" }, issuer: "Cybolt Academy", date: "2024" },
     { name: { es: "Google Cloud Computing Foundations Academy", en: "Google Cloud Computing Foundations Academy" }, issuer: "Google Cloud", date: "2024" },
+    { name: { es: "Foundational C# with Microsoft Certification", en: "Foundational C# with Microsoft Certification" }, issuer: "Microsoft", date: "2026" },
     { name: { es: "Diplomado en Ciencia de Datos", en: "Diploma in Data Science" }, issuer: "Tecnológico Nacional de México", date: "2024" },
     { name: { es: "First Certificate in English (FCE) - Nivel B1", en: "First Certificate in English (FCE) - Level B1" }, issuer: "Cambridge", date: "2023" },
     { name: { es: "Certificado de Inglés - Nivel B2", en: "English Certificate - Level B2" }, issuer: "CELEX (IPN) & SEP", date: "2024" },
@@ -73,6 +74,7 @@ export const skills = {
 
   courses: [
     { name: { es: "Python", en: "Python" }, provider: "Udemy", date: "2024" },
+    { name: { es: "SQL Server Integration Services (SSIS)", en: "SQL Server Integration Services (SSIS)" }, provider: "Udemy", date: "2025" },
     { name: { es: "¿Qué es Ciencia de Datos?, IBM", en: "What is Data Science?, IBM" }, provider: "Coursera", date: "2023" },
     { name: { es: "Introducción a Java, UNAM", en: "Introduction to Java, UNAM" }, provider: "Coursera", date: "2023" },
     { name: { es: "Programación Estadística con R, UNAM", en: "Statistical Programming with R, UNAM" }, provider: "Coursera", date: "2023" },

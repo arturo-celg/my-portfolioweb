@@ -1,30 +1,45 @@
 export const experienceData = {
-  work: [
-    {
-      title: { es: "Analista de Seguridad e Implementación Aplicativos Cloud", en: "Security Analyst and Cloud Application Implementation" },
-      company: { es: "Radiomóvil Dipsa S.A. de C.V.", en: "Radiomóvil Dipsa S.A. de C.V." },
-      period: { es: "2024 - Presente", en: "2024 - Present" },
-      description: {
-        es: [
-          "Desarrollo de aplicaciones web con C# y .Net para la gestión de servicios internos.",
-          "Desarrollo de ETLs para la automatización de procesos administrativos y operativos.",
-          "Desarrollo de reportes mediante SQL Server Reporting Services (SSRS).",
-          "Gestión de servidores Linux y Windows, asegurando su correcto funcionamiento y seguridad.",
-          "Administración de accesos en bases de datos y servidores.",
-          "Colaboración en proyectos de migración de portales web y servicios internos."
-        ],
-        en: [
-          "Develop web applications with C# and .NET for internal service management.",
-          "Build ETLs to automate administrative and operational processes.",
-          "Develop reports using SQL Server Reporting Services (SSRS).",
-          "Manage Linux and Windows servers, ensuring proper operation and security.",
-          "Administer database and server access.",
-          "Collaborate on migration projects for web portals and internal services."
-        ],
-      },
-      technologies: ["C#", "SQL", "Windows Server", "Linux", "ETL", "SSRS"]
-    }
-  ],
+work: [
+  {
+    title: { 
+      es: "Analista de Seguridad e Implementación de Aplicativos Cloud", 
+      en: "Security and Cloud Applications Implementation Analyst" 
+    },
+    company: { 
+      es: "Radiomóvil Dipsa S.A. de C.V. (TELCEL)", 
+      en: "Radiomóvil Dipsa S.A. de C.V. (TELCEL)" 
+    },
+    period: { 
+      es: "Octubre 2024 - Actual", 
+      en: "October 2024 - Present" 
+    },
+    description: {
+      es: [
+        "Desarrollo de aplicaciones web empresariales utilizando C# y .NET para la gestión de servicios internos.",
+        "Automatización de procesos administrativos y operativos mediante ETLs.",
+        "Desarrollo de reportes analíticos utilizando SQL Server Reporting Services (SSRS).",
+        "Administración y monitoreo de servidores Linux y Windows.",
+        "Apoyo en la instalación, configuración e implementación de aplicativos internos.",
+        "Gestión de accesos y permisos en bases de datos y servidores.",
+        "Colaboración en proyectos de migración y modernización de portales web e infraestructura asociada."
+      ],
+      en: [
+        "Develop enterprise web applications using C# and .NET for internal service management.",
+        "Automate administrative and operational processes through ETLs.",
+        "Develop analytical reports using SQL Server Reporting Services (SSRS).",
+        "Administer and monitor Linux and Windows servers.",
+        "Assist in the installation, configuration and deployment of internal applications.",
+        "Manage access permissions across databases, servers and corporate systems.",
+        "Collaborate in migration and modernization projects for internal web portals and infrastructure."
+      ],
+    },
+    technologies: [
+      "C#", ".NET", "SQL Server", "SSIS", "SSRS",
+      "JavaScript", "Bootstrap",
+      "Windows Server", "Linux", "LDAP"
+    ]
+  }
+],
   education: [
     {
       degree: { es: "Ingeniería en Sistemas Computacionales", en: "Computer Systems Engineering" },

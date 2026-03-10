@@ -11,7 +11,7 @@ export default function AboutCard({ name, role, description, image }) {
         <Avatar src={image} alt={name} sx={{ width: 128, height: 128, mx: 'auto', mb: 2 }} />
         <Typography variant="h6" sx={{ fontWeight: 'bold' }}>{name}</Typography>
         <Typography color="primary">{role}</Typography>
-        <Typography color="text.secondary" sx={{ mt: 1 }}>{description}</Typography>
+        <Typography color="text.secondary" sx={{ mt: 1, width: '100%' }}>{description}</Typography>
       </CardContent>
     </Card>
   );
