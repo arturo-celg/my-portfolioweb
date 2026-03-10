@@ -7,14 +7,19 @@ import {
   Button, 
   Box, 
   IconButton,
-  Chip
+  Chip,
+  Collapse,
 } from '@mui/material';
 import { 
   GitHub, 
   Language,
   NavigateNext,
-  NavigateBefore
+  NavigateBefore,
+  ExpandMore,
+  Visibility,      
+  VisibilityOff,  
 } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 
 export default function ProjectCard(props) {
   const {
@@ -24,14 +29,15 @@ export default function ProjectCard(props) {
     title, 
     description, 
     images, 
-    image, // Soporte para la propiedad antigua
-    technologies = [], // Valor por defecto vacío
+    image,
+    technologies = [],
     category,
   } = props;
 
-  // Convertir la imagen antigua al nuevo formato si es necesario
   const imageList = images || (image ? [image] : ["/placeholder.jpg"]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const { t } = useTranslation('common');  // 👈 namespace 'common'
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % imageList.length);
@@ -61,7 +67,6 @@ export default function ProjectCard(props) {
         }}
       >
         <Box sx={{ position: 'relative', height: 250 }}>
-          {/* Etiqueta de categoría */}
           {category && (
             <Chip
               label={
@@ -99,15 +104,11 @@ export default function ProjectCard(props) {
             />
           </AnimatePresence>
 
-          {/* Controles del carrusel */}
           {imageList.length > 1 && (
             <Box
               sx={{
                 position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
+                top: 0, left: 0, right: 0, bottom: 0,
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
@@ -144,14 +145,11 @@ export default function ProjectCard(props) {
             </Box>
           )}
 
-          {/* Indicadores */}
           {imageList.length > 1 && (
             <Box
               sx={{
                 position: 'absolute',
-                bottom: 16,
-                left: 0,
-                right: 0,
+                bottom: 16, left: 0, right: 0,
                 display: 'flex',
                 justifyContent: 'center',
                 gap: 1,
@@ -161,8 +159,7 @@ export default function ProjectCard(props) {
                 <Box
                   key={index}
                   sx={{
-                    width: 8,
-                    height: 8,
+                    width: 8, height: 8,
                     borderRadius: '50%',
                     bgcolor: index === currentImageIndex ? 'primary.main' : 'rgba(255,255,255,0.5)',
                     cursor: 'pointer',
@@ -188,12 +185,7 @@ export default function ProjectCard(props) {
           >
             {title}
           </Typography>
-          
-          <Typography variant="body2" color="text.secondary" paragraph>
-            {description}
-          </Typography>
 
-          {/* Tecnologías */}
           <Box sx={{ mb: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
             {technologies.map((tech) => (
               <motion.div
@@ -207,16 +199,56 @@ export default function ProjectCard(props) {
                   sx={{
                     bgcolor: 'rgba(99, 102, 241, 0.1)',
                     color: 'primary.main',
-                    '&:hover': {
-                      bgcolor: 'rgba(99, 102, 241, 0.2)',
-                    },
+                    '&:hover': { bgcolor: 'rgba(99, 102, 241, 0.2)' },
                   }}
                 />
               </motion.div>
             ))}
           </Box>
 
-          <Box sx={{ display: 'flex', gap: 1 }}>
+          <Button
+            onClick={() => setExpanded(!expanded)}
+            startIcon={                                  // 👈 cambiado a startIcon
+              expanded 
+                ? <VisibilityOff sx={{ color: '#9333EA' }} />   
+                : <Visibility sx={{ color: '#6366F1' }} />      
+            }
+            endIcon={
+              <ExpandMore
+                sx={{
+                  transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 300ms ease',
+                  color: expanded ? '#9333EA' : '#6366F1',
+                }}
+              />
+            }
+            sx={{
+              textTransform: 'none',
+              color: expanded ? '#9333EA' : '#6366F1',
+              px: 0,
+              mb: 1,
+              fontWeight: 600,
+              transition: 'color 300ms ease',
+              '&:hover': {
+                backgroundColor: 'transparent',
+                color: '#9333EA',
+              },
+            }}
+          >
+            {expanded ? t('projects.hideDescription') : t('projects.showDescription')}  {/* 👈 i18n */}
+          </Button>
+
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ mb: 2, lineHeight: 1.8 }}
+            >
+              {description}
+            </Typography>
+          </Collapse>
+
+          <Box sx={{ display: 'flex', gap: 1, mt: 1 }}>
             {demo && (
               <motion.div whileHover={{ scale: 1.1 }}>
                 <Button 

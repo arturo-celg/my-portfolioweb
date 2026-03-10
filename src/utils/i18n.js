@@ -27,6 +27,8 @@ const resources = {
       projects: {
         title: "Proyectos",
         categories: { all: "Todos", personal: "Personal", academico: "Académico", laboral: "Laboral" },
+        showDescription: "Ver descripción",    
+        hideDescription: "Ocultar descripción",  
       },
       contact: {
         title: "Contáctame",
@@ -63,6 +65,8 @@ const resources = {
       projects: {
         title: "Projects",
         categories: { all: "All", personal: "Personal", academico: "Academic", laboral: "Work" },
+        showDescription: "Show description",     
+        hideDescription: "Hide description",
       },
       contact: {
         title: "Contact me",
