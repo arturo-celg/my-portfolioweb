@@ -1,4 +1,6 @@
 import { Button, Container, Box, Typography, Avatar, useTheme, useMediaQuery } from "@mui/material";
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';  
+import WavingHandIcon from '@mui/icons-material/WavingHand';
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { skills } from "../data/skills";
@@ -183,7 +185,13 @@ function Home() {
                   }}
                   style={{ display: 'inline-block' }}
                 >
-                  👋
+                  <WavingHandIcon   
+                    sx={{ 
+                      fontSize: { xs: '2.5rem', sm: '3rem', md: '4rem' },
+                      verticalAlign: 'middle',
+                      color: '#FDE68A',
+                    }} 
+                  />
                 </motion.span>
               </Typography>
 
