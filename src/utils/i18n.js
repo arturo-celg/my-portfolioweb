@@ -12,7 +12,7 @@ const resources = {
       technicalSkills: "Habilidades Técnicas",
       certifications: "Certificaciones",
       courses: "Cursos",
-      softSkills: "Soft Skills",
+      softSkills: "Habilidades Blandas",
       home: {
         greeting: "¡Hola, soy",
         name: "Arturo",
