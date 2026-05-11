@@ -3,10 +3,17 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { useTranslation } from "react-i18next";
-import { FaGithub, FaYoutube } from "react-icons/fa";
+import { FaGithub, FaYoutube, FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
 const socialLinks = [
+  {
+    label: "Email",
+    href: "mailto:acorteslug@gmail.com",
+    icon: <MdEmail size={24} />,
+    color: "#fff",
+    hoverColor: "#EA4335",
+  },
   {
     label: "GitHub",
     href: "https://github.com/arturo-celg",
@@ -22,11 +29,11 @@ const socialLinks = [
     hoverColor: "#FF0000",
   },
   {
-    label: "Email",
-    href: "mailto:acorteslug@gmail.com",
-    icon: <MdEmail size={24} />,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/arturo-l-98ab74405",
+    icon: <FaLinkedin size={24} />,
     color: "#fff",
-    hoverColor: "#EA4335",
+    hoverColor: "#0A66C2",
   },
 ];
 
@@ -37,6 +44,7 @@ function Footer() {
     <Box
       component="footer"
       sx={{ backgroundColor: "#111827", color: "#fff", py: 8, mt: 6 }}
+      id="contact"
     >
       <Box
         sx={{
