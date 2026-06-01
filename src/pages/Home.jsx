@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { skills } from "../data/skills";
 import { useTranslation } from "react-i18next";
-import animatedPhoto from '../assets/animatedPhoto.png';
+//import animatedPhoto from '../assets/animatedPhoto.png';
+import animatedPhoto from '../assets/animatedPhoto21.jpg';
 
 function Home() {
   // Hook para detectar tamaño de pantalla

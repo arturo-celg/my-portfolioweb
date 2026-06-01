@@ -17,8 +17,7 @@ const resources = {
         greeting: "¡Hola, soy",
         name: "Arturo",
         phrases: [
-          "Ingeniero de Software",
-          "Desarrollador C# y .NET",
+          "Ingeniero en Sistemas Computacionales",
           "Aplicaciones Empresariales e Infraestructura",
           "Automatización y Plataformas de Datos",
         ],
@@ -56,7 +55,6 @@ const resources = {
         name: "Arthur",
         phrases: [
           "Software Engineer",
-          "C# and .NET Developer",
           "Enterprise Applications and Infrastructure",
           "Automation and Data Platforms",
         ],

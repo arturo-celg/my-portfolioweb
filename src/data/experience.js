@@ -10,8 +10,8 @@ work: [
       en: "Radiomóvil Dipsa S.A. de C.V. (TELCEL)" 
     },
     period: { 
-      es: "Octubre 2024 - Actual", 
-      en: "October 2024 - Present" 
+      es: "Noviembre 2024 - Actual", 
+      en: "November 2024 - Present" 
     },
     description: {
       es: [
@@ -21,7 +21,8 @@ work: [
         "Administración y monitoreo de servidores Linux y Windows.",
         "Apoyo en la instalación, configuración e implementación de aplicativos internos.",
         "Gestión de accesos y permisos en bases de datos y servidores.",
-        "Colaboración en proyectos de migración y modernización de portales web e infraestructura asociada."
+        "Colaboración en proyectos de migración y modernización de portales web e infraestructura asociada.",
+        "Participación en la implementación de pipelines de despliegue en Azure DevOps e integración de repositorios Git."
       ],
       en: [
         "Develop enterprise web applications using C# and .NET for internal service management.",
@@ -30,13 +31,14 @@ work: [
         "Administer and monitor Linux and Windows servers.",
         "Assist in the installation, configuration and deployment of internal applications.",
         "Manage access permissions across databases, servers and corporate systems.",
-        "Collaborate in migration and modernization projects for internal web portals and infrastructure."
+        "Collaborate in migration and modernization projects for internal web portals and infrastructure.",
+        "Participate in the implementation of deployment pipelines in Azure DevOps and integration of Git repositories."
       ],
     },
     technologies: [
       "C#", ".NET", "SQL Server", "SSIS", "SSRS",
       "JavaScript", "Bootstrap",
-      "Windows Server", "Linux", "LDAP"
+      "Windows Server", "Linux", "LDAP","Git", "Azure DevOps"
     ]
   }
 ],
