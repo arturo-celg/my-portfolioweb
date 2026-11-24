@@ -1,5 +1,4 @@
 import { Button, Container, Box, Typography, Avatar, useTheme, useMediaQuery } from "@mui/material";
-import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';  
 import WavingHandIcon from '@mui/icons-material/WavingHand';
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -13,9 +12,9 @@ function Home() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  const isLight = theme.palette.mode === 'light';
   
   const [currentPhrase, setCurrentPhrase] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
   const { t } = useTranslation();
   
   // 🎯 Radio responsivo para la órbita
@@ -31,13 +30,13 @@ function Home() {
   ];
 
   const selectedTechNames = [
-    'csharp',
+    'dotnet',
     'server-admin',
     'sql',
-    'python',
+    'scrum',
     'reporting', 
-    'javascript',
-    'react',
+    'git',
+    'security',
     'database-admin',
   ];
 
@@ -55,15 +54,12 @@ function Home() {
     }));
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 500);
-    
     // Cambiar frase cada 3 segundos
     const phraseInterval = setInterval(() => {
       setCurrentPhrase((prev) => (prev + 1) % phrases.length);
     }, 3000);
 
     return () => {
-      clearTimeout(timer);
       clearInterval(phraseInterval);
     };
   }, []);
@@ -80,7 +76,9 @@ function Home() {
         alignItems: 'center',
         position: 'relative',
         overflow: 'hidden',
-        background: 'linear-gradient(45deg, #6366F1, #9333EA)',
+        background: isLight
+          ? 'linear-gradient(135deg, rgba(248, 244, 236, 0.94), rgba(255, 253, 247, 0.98))'
+          : 'linear-gradient(135deg, rgba(29, 33, 41, 0.96), rgba(22, 26, 34, 0.98))',
         backgroundSize: '200% 200%',
         animation: 'gradient 15s ease infinite',
         padding: 0,
@@ -97,7 +95,7 @@ function Home() {
           bottom: 0,
           overflow: 'hidden',
           zIndex: 0,
-          opacity: 0.6,
+          opacity: isLight ? 0.28 : 0.5,
         }}
       >
         {[...Array(20)].map((_, index) => (
@@ -105,7 +103,7 @@ function Home() {
             key={index}
             style={{
               position: 'absolute',
-              background: 'rgba(255, 255, 255, 0.1)',
+              background: isLight ? 'rgba(198, 40, 40, 0.12)' : 'rgba(255, 255, 255, 0.1)',
               borderRadius: '50%',
               width: Math.random() * 20 + 10,
               height: Math.random() * 20 + 10,
@@ -135,7 +133,7 @@ function Home() {
             justifyContent: 'space-between',
             gap: 4,
             py: { xs: 4, md: 8 },
-            color: 'white',
+            color: 'text.primary',
           }}
         >
           {/* Columna Izquierda - Texto */}
@@ -158,12 +156,12 @@ function Home() {
                   fontWeight: 800,
                   mb: 3,
                   letterSpacing: '0.02em',
-                  textShadow: '2px 2px 4px rgba(0,0,0,0.2)',
+                  textShadow: isLight ? 'none' : '2px 2px 4px rgba(0,0,0,0.2)',
                 }}
               >
                 {t('home.greeting')}{' '}
                 <motion.span
-                  style={{ color: '#FDE68A' }}
+                  style={{ color: theme.palette.lego.yellow }}
                   animate={{ 
                     scale: [1, 1.1, 1],
                   }}
@@ -190,7 +188,7 @@ function Home() {
                     sx={{ 
                       fontSize: { xs: '2.5rem', sm: '3rem', md: '4rem' },
                       verticalAlign: 'middle',
-                      color: '#FDE68A',
+                      color: theme.palette.lego.yellow,
                     }} 
                   />
                 </motion.span>
@@ -211,8 +209,9 @@ function Home() {
                       sx={{
                         fontSize: { xs: '1.2rem', sm: '1.4rem', md: '1.5rem' },
                         lineHeight: 1.6,
-                        textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
+                        textShadow: isLight ? 'none' : '1px 1px 2px rgba(0,0,0,0.1)',
                         fontWeight: 500,
+                        color: 'text.secondary',
                       }}
                     >
                       {phrases[currentPhrase]}
@@ -231,19 +230,19 @@ function Home() {
                   size="large"
                   href="#projects"
                   sx={{
-                    borderRadius: '9999px',
+                    borderRadius: 2.5,
                     px: 4,
                     py: 1.5,
                     fontSize: { xs: '1rem', sm: '1.1rem' },
                     fontWeight: 600,
-                    backdropFilter: 'blur(8px)',
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    color: 'white',
-                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                    backgroundColor: 'primary.main',
+                    border: '1px solid',
+                    borderColor: 'primary.dark',
+                    color: '#fff',
+                    boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.18)',
                     transition: 'all 0.2s ease-in-out',
                     '&:hover': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                      backgroundColor: 'primary.dark',
                       transform: 'translateY(-2px)',
                       boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.2)',
                     },
@@ -288,7 +287,9 @@ function Home() {
                     position: 'absolute',
                     inset: -3,
                     padding: 3,
-                    background: 'linear-gradient(45deg, #FDE68A, #93C5FD)',
+                    background: isLight
+                      ? `linear-gradient(45deg, ${theme.palette.secondary.main}, ${theme.palette.primary.main})`
+                      : `linear-gradient(45deg, ${theme.palette.secondary.light}, ${theme.palette.primary.light})`,
                     borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%',
                     animation: 'borderRotate 8s linear infinite',
                   },
@@ -300,9 +301,9 @@ function Home() {
                   sx={{
                     width: '100%',
                     height: '100%',
-                    border: '4px solid rgba(255,255,255,0.2)',
-                    backgroundColor: 'rgba(255,255,255,0.1)',
-                    backdropFilter: 'blur(8px)',
+                    border: '4px solid',
+                    borderColor: isLight ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.22)',
+                    backgroundColor: isLight ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.1)',
                   }}
                 />
               </Box>
@@ -354,9 +355,10 @@ function Home() {
                       style={{
                         width: iconSize,   // 🎯 Tamaño responsivo
                         height: iconSize,  // 🎯 Tamaño responsivo
-                        background: 'rgba(255, 255, 255, 0.9)',
+                        background: isLight ? '#fffdf7' : 'rgba(255, 255, 255, 0.9)',
                         borderRadius: '12px',
                         padding: '6px',
+                        border: isLight ? '1px solid rgba(30, 36, 48, 0.16)' : 'none',
                         boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
                         display: 'flex',
                         alignItems: 'center',

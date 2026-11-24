@@ -30,7 +30,7 @@ const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/arturo-l-98ab74405",
+    href: "https://www.linkedin.com/in/arturo-cortés-lugo-98ab74405",
     icon: <FaLinkedin size={24} />,
     color: "#fff",
     hoverColor: "#0A66C2",
@@ -43,7 +43,13 @@ function Footer() {
   return (
     <Box
       component="footer"
-      sx={{ backgroundColor: "#111827", color: "#fff", py: 8, mt: 6 }}
+      sx={{
+        backgroundColor: 'background.paper',
+        color: 'text.primary',
+        py: 8,
+        mt: 6,
+        borderTop: (theme) => `1px solid ${theme.palette.divider}`,
+      }}
       id="contact"
     >
       <Box
@@ -62,7 +68,7 @@ function Footer() {
         </Typography>
 
         <Box sx={{ display: "flex", gap: 1 }}>
-          {socialLinks.map(({ label, href, icon, color, hoverColor }) => (
+          {socialLinks.map(({ label, href, icon }) => (
             <Tooltip
               key={label}
               title={label}
@@ -71,16 +77,17 @@ function Footer() {
               slotProps={{
                 tooltip: {
                   sx: {
-                    bgcolor: "#1f2937",
-                    color: "#fff",
+                    bgcolor: 'background.default',
+                    color: 'text.primary',
                     fontSize: "0.85rem",
                     px: 1.5,
                     py: 0.5,
                     borderRadius: 1,
+                    border: (theme) => `1px solid ${theme.palette.divider}`,
                   },
                 },
                 arrow: {
-                  sx: { color: "#1f2937" },
+                  sx: { color: 'background.default' },
                 },
               }}
             >
@@ -90,12 +97,14 @@ function Footer() {
                 target={href.startsWith("mailto") ? "_self" : "_blank"}
                 rel="noopener noreferrer"
                 sx={{
-                  color: color,
+                  color: 'text.secondary',
+                  border: (theme) => `1px solid ${theme.palette.divider}`,
+                  borderRadius: 2,
                   transition: "color 200ms, transform 200ms",
                   "&:hover": {
-                    color: hoverColor,
+                    color: 'primary.main',
                     transform: "scale(1.2)",
-                    backgroundColor: "transparent",
+                    backgroundColor: 'transparent',
                   },
                 }}
               >

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   AppBar,
   Toolbar,
@@ -16,11 +16,12 @@ import {
   Container,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { getNavLinks } from "../data/navLinks";
 import { useTranslation } from "react-i18next";
 
-function Navbar() {
+function Navbar({ mode, onToggleTheme }) {
   const { i18n } = useTranslation();
   const lang = i18n.language?.startsWith('en') ? 'en' : 'es';
   const links = getNavLinks(lang);
@@ -30,6 +31,8 @@ function Navbar() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const appBarRef = useRef(null);
+  const isLight = theme.palette.mode === 'light';
+  const navTextColor = scrolled || isLight ? 'text.primary' : 'common.white';
 
   // Efecto para el cambio de color en scroll
   useEffect(() => {
@@ -62,9 +65,16 @@ function Navbar() {
         position="fixed"
         ref={appBarRef}
         sx={{
-          backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.9)' : 'transparent',
-          boxShadow: scrolled ? 1 : 'none',
+          backgroundColor: scrolled
+            ? theme.palette.mode === 'light'
+              ? 'rgba(255, 253, 247, 0.92)'
+              : 'rgba(31, 36, 48, 0.86)'
+            : isLight
+              ? 'rgba(255, 253, 247, 0.62)'
+              : 'transparent',
+          boxShadow: scrolled ? 3 : 'none',
           transition: 'all 0.3s ease-in-out',
+          borderBottom: scrolled || isLight ? `1px solid ${theme.palette.divider}` : '1px solid transparent',
         }}
       >
         <Container maxWidth="lg">
@@ -75,9 +85,10 @@ function Navbar() {
               component="div"
               sx={{
                 flexGrow: 1,
-                color: scrolled ? 'text.primary' : 'white',
-                fontWeight: 700,
-                letterSpacing: '.1rem',
+                color: navTextColor,
+                fontWeight: 800,
+                letterSpacing: '.08rem',
+                textShadow: !scrolled && !isLight ? '0 1px 2px rgba(0,0,0,0.35)' : 'none',
               }}
             >
               ARTURO CL
@@ -85,35 +96,73 @@ function Navbar() {
 
             {/* Menú Desktop */}
             {!isMobile && (
-              <Box sx={{ display: 'flex', gap: 2 }}>
+              <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
                 {links.map((link) => (
                   <Button
                     key={link.id}
                     href={link.href}
                     onClick={(e) => { e.preventDefault(); handleNavClick(link.href); }}
                     sx={{
-                      color: scrolled ? 'text.primary' : 'white',
+                      color: navTextColor,
+                      borderRadius: 2,
+                      fontWeight: 700,
+                      letterSpacing: '0.015em',
                       '&:hover': {
-                        backgroundColor: scrolled ? 'rgba(0,0,0,0.04)' : 'rgba(255,255,255,0.1)',
+                        backgroundColor: scrolled
+                          ? theme.palette.action.hover
+                          : 'rgba(255,255,255,0.16)',
                       },
                     }}
                   >
                     {link.label}
                   </Button>
                 ))}
+
+                <IconButton
+                  aria-label="toggle theme"
+                  onClick={onToggleTheme}
+                  sx={{
+                    color: navTextColor,
+                    border: '1px solid',
+                    borderColor: scrolled ? 'divider' : 'rgba(255,255,255,0.35)',
+                    borderRadius: 2,
+                    '&:hover': {
+                      backgroundColor: scrolled
+                        ? theme.palette.action.hover
+                        : 'rgba(255,255,255,0.14)',
+                    },
+                  }}
+                >
+                  {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+                </IconButton>
               </Box>
             )}
 
             {/* Botón Menú Mobile */}
             {isMobile && (
-              <IconButton
-                color="inherit"
-                aria-label="menu"
-                onClick={toggleDrawer(true)}
-                sx={{ color: scrolled ? 'text.primary' : 'white' }}
-              >
-                <MenuIcon />
-              </IconButton>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <IconButton
+                  aria-label="toggle theme"
+                  onClick={onToggleTheme}
+                  sx={{
+                    color: navTextColor,
+                    border: '1px solid',
+                    borderColor: scrolled ? 'divider' : 'rgba(255,255,255,0.35)',
+                    borderRadius: 2,
+                  }}
+                >
+                  {mode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+                </IconButton>
+
+                <IconButton
+                  color="inherit"
+                  aria-label="menu"
+                  onClick={toggleDrawer(true)}
+                  sx={{ color: navTextColor }}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Box>
             )}
           </Toolbar>
         </Container>
@@ -121,11 +170,23 @@ function Navbar() {
 
       {/* Drawer para mobile */}
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-        <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+        <Box
+          sx={{
+            width: 260,
+            height: '100%',
+            backgroundColor: 'background.paper',
+            borderRight: `1px solid ${theme.palette.divider}`,
+          }}
+          role="presentation"
+          onClick={toggleDrawer(false)}
+        >
           <List>
             {links.map((link) => (
               <ListItem key={link.id} disablePadding>
-                <ListItemButton onClick={() => handleNavClick(link.href)}>
+                <ListItemButton
+                  onClick={() => handleNavClick(link.href)}
+                  sx={{ borderBottom: `1px solid ${theme.palette.divider}` }}
+                >
                   <ListItemText primary={link.label} />
                 </ListItemButton>
               </ListItem>

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Box, IconButton } from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -98,9 +98,12 @@ export default function SimpleCarousel({ items = [], renderItem, getKey, ariaLab
           top: '50%', 
           transform: 'translateY(-50%)', 
           zIndex: 2, 
-          backgroundColor: 'rgba(0,0,0,0.35)', 
-          color: '#fff', 
-          '&:hover': { backgroundColor: 'rgba(0,0,0,0.5)' }, 
+          backgroundColor: (theme) => theme.palette.mode === 'light' ? 'rgba(255,253,247,0.92)' : 'rgba(0,0,0,0.36)', 
+          border: (theme) => `1px solid ${theme.palette.divider}`,
+          color: 'text.primary', 
+          '&:hover': {
+            backgroundColor: (theme) => theme.palette.mode === 'light' ? 'rgba(255,253,247,1)' : 'rgba(0,0,0,0.5)'
+          }, 
           opacity: canScroll.left ? 1 : 0.4, 
           pointerEvents: canScroll.left ? 'auto' : 'none',
           display: items.length > 1 ? 'flex' : 'none'
@@ -119,9 +122,12 @@ export default function SimpleCarousel({ items = [], renderItem, getKey, ariaLab
           top: '50%', 
           transform: 'translateY(-50%)', 
           zIndex: 2, 
-          backgroundColor: 'rgba(0,0,0,0.35)', 
-          color: '#fff', 
-          '&:hover': { backgroundColor: 'rgba(0,0,0,0.5)' }, 
+          backgroundColor: (theme) => theme.palette.mode === 'light' ? 'rgba(255,253,247,0.92)' : 'rgba(0,0,0,0.36)', 
+          border: (theme) => `1px solid ${theme.palette.divider}`,
+          color: 'text.primary', 
+          '&:hover': {
+            backgroundColor: (theme) => theme.palette.mode === 'light' ? 'rgba(255,253,247,1)' : 'rgba(0,0,0,0.5)'
+          }, 
           opacity: canScroll.right ? 1 : 0.4, 
           pointerEvents: canScroll.right ? 'auto' : 'none',
           display: items.length > 1 ? 'flex' : 'none'

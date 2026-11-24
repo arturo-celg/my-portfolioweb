@@ -21,3 +21,95 @@
     border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
   }
 }
+
+.lego-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.lego-card:hover {
+  transform: translateY(-3px);
+}
+
+.lego-stud-strip {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 10px;
+  border-radius: 999px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.75) 35%, rgba(255, 255, 255, 0) 36%);
+  background-size: 12px 10px;
+  background-repeat: repeat-x;
+  pointer-events: none;
+  opacity: 0.56;
+  mix-blend-mode: soft-light;
+}
+
+.lego-stud-strip--thin {
+  top: 10px;
+  width: 64px;
+  height: 8px;
+  background-size: 10px 8px;
+  opacity: 0.4;
+}
+
+.lego-architecture-card {
+  border: 1px solid rgba(120, 128, 140, 0.22);
+}
+
+.lego-section-title {
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 0.98em;
+}
+
+.lego-skill-item {
+  position: relative;
+}
+
+.lego-skill-item::after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: currentColor;
+  transform: translateY(-50%);
+  opacity: 0.28;
+}
+
+.lego-softskill-card {
+  position: relative;
+}
+
+.lego-softskill-card::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 6px;
+  border-radius: 999px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.6) 32%, rgba(255, 255, 255, 0) 34%);
+  background-size: 11px 6px;
+  opacity: 0.5;
+}
+
+.lego-project-shell {
+  position: relative;
+}
+
+.lego-project-shell::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px dashed rgba(120, 128, 140, 0.2);
+  border-radius: 14px;
+  pointer-events: none;
+}

@@ -1,47 +1,39 @@
 export const experienceData = {
-work: [
-  {
-    title: { 
-      es: "Analista de Seguridad e Implementación de Aplicativos Cloud", 
-      en: "Security and Cloud Applications Implementation Analyst" 
-    },
-    company: { 
-      es: "Radiomóvil Dipsa S.A. de C.V. (TELCEL)", 
-      en: "Radiomóvil Dipsa S.A. de C.V. (TELCEL)" 
-    },
-    period: { 
-      es: "Noviembre 2024 - Actual", 
-      en: "November 2024 - Present" 
-    },
-    description: {
-      es: [
-        "Desarrollo de aplicaciones web empresariales utilizando C# y .NET para la gestión de servicios internos.",
-        "Automatización de procesos administrativos y operativos mediante ETLs.",
-        "Desarrollo de reportes analíticos utilizando SQL Server Reporting Services (SSRS).",
-        "Administración y monitoreo de servidores Linux y Windows.",
-        "Apoyo en la instalación, configuración e implementación de aplicativos internos.",
-        "Gestión de accesos y permisos en bases de datos y servidores.",
-        "Colaboración en proyectos de migración y modernización de portales web e infraestructura asociada.",
-        "Participación en la implementación de pipelines de despliegue en Azure DevOps e integración de repositorios Git."
-      ],
-      en: [
-        "Develop enterprise web applications using C# and .NET for internal service management.",
-        "Automate administrative and operational processes through ETLs.",
-        "Develop analytical reports using SQL Server Reporting Services (SSRS).",
-        "Administer and monitor Linux and Windows servers.",
-        "Assist in the installation, configuration and deployment of internal applications.",
-        "Manage access permissions across databases, servers and corporate systems.",
-        "Collaborate in migration and modernization projects for internal web portals and infrastructure.",
-        "Participate in the implementation of deployment pipelines in Azure DevOps and integration of Git repositories."
-      ],
-    },
-    technologies: [
-      "C#", ".NET", "SQL Server", "SSIS", "SSRS",
-      "JavaScript", "Bootstrap",
-      "Windows Server", "Linux", "LDAP","Git", "Azure DevOps"
-    ]
-  }
-],
+  work: [
+    {
+      title: {
+        es: "Analista de Seguridad e Implementación de Aplicativos Cloud",
+        en: "Security and Cloud Applications Implementation Analyst"
+      },
+      company: {
+        es: "Radiomóvil Dipsa S.A. de C.V. (TELCEL)",
+        en: "Radiomóvil Dipsa S.A. de C.V. (TELCEL)"
+      },
+      period: {
+        es: "Noviembre 2024 - Actual",
+        en: "November 2024 - Present"
+      },
+      description: {
+        es: [
+          "Liderando actualmente la iniciativa departamental de modernización del ciclo de vida de desarrollo (SDLC), guiando la transición de equipos de metodologías tradicionales hacia marcos Ágiles/Scrum y estandarizando el control de versiones y pipelines CI/CD con Git y Azure DevOps.",
+          "Desarrollo y modernización de aplicaciones web empresariales en C# y .NET (.NET 8, Web Forms, Web API) para automatizar flujos internos y mejorar la confiabilidad operativa.",
+          "Diseño e implementación de procesos ETL y tableros en SQL Server Reporting Services (SSRS) para integrar flujos de datos y apoyar la toma de decisiones operativas.",
+          "Administración y monitoreo de más de 95 servidores Windows y Linux, aplicando controles de acceso, permisos de usuarios (RBAC) y políticas de seguridad corporativas en servidores y bases de datos."
+        ],
+        en: [
+          "Currently leading the departmental initiative to modernize the software development lifecycle (SDLC), guiding teams from traditional methodologies toward Agile/Scrum frameworks and standardizing version control and CI/CD pipelines with Git and Azure DevOps.",
+          "Develop and modernize enterprise web applications using C# and .NET (.NET 8, Web Forms, Web API) to automate internal workflows and improve operational reliability.",
+          "Design and implement ETL processes and SQL Server Reporting Services (SSRS) dashboards to integrate data flows and support operational decision-making.",
+          "Administer and monitor more than 95 Windows and Linux servers, applying access controls, role-based access control (RBAC), and corporate security policies across servers and databases."
+        ],
+      },
+      technologies: [
+        "C#", ".NET", "SQL Server", "SSIS", "SSRS",
+        "JavaScript", "Bootstrap",
+        "Windows Server", "Linux", "LDAP", "Git", "Azure DevOps"
+      ]
+    }
+  ],
   education: [
     {
       degree: { es: "Ingeniería en Sistemas Computacionales", en: "Computer Systems Engineering" },
@@ -60,16 +52,16 @@ export function getExperience(lang = "es") {
   const pick = (obj) => (obj && typeof obj === "object" ? obj[lang] ?? obj.es ?? obj.en : obj);
   return {
     work: experienceData.work.map((w) => ({
-      title: pick(w.title), 
-      company: pick(w.company), 
+      title: pick(w.title),
+      company: pick(w.company),
       period: pick(w.period),
-      description: pick(w.description), 
+      description: pick(w.description),
       technologies: w.technologies,
     })),
     education: experienceData.education.map((e) => ({
-      degree: pick(e.degree), 
+      degree: pick(e.degree),
       institution: pick(e.institution),
-      period: pick(e.period), 
+      period: pick(e.period),
     })),
   };
 }

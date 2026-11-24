@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Box, Container, Typography, useTheme, useMediaQuery } from "@mui/material";
+import { Box, Container, Typography, Card, CardContent, useTheme, useMediaQuery } from "@mui/material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -49,7 +49,12 @@ export default function Projects() {
     <Box
       component="section"
       id="projects"
-      sx={{ py: 8, bgcolor: 'background.default', scrollMarginTop: { xs: '56px', sm: '64px' } }}
+      sx={{
+        pt: { xs: 2, md: 2 },
+        pb: { xs: 4, md: 6 },
+        bgcolor: 'transparent',
+        scrollMarginTop: { xs: '56px', sm: '64px' }
+      }}
     >
       <Container maxWidth="lg">
         <Typography
@@ -60,21 +65,34 @@ export default function Projects() {
           sx={{
             mb: 6,
             fontWeight: 'bold',
-            background: 'linear-gradient(45deg, #6366F1 30%, #9333EA 90%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            color: 'text.primary',
+            position: 'relative',
+            '&::after': {
+              content: '""',
+              display: 'block',
+              width: { xs: 90, md: 140 },
+              height: 6,
+              margin: '12px auto 0',
+              borderRadius: 999,
+              background: (theme) => `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+            },
           }}
         >
           {t('projects.title')}
         </Typography>
 
-        <Slider {...settings}>
-          {projectList.map((proj) => (
-            <Box key={proj.id} sx={{ p: 2 }}>
-              <ProjectCard {...proj} />
-            </Box>
-          ))}
-        </Slider>
+        <Card className="lego-card lego-architecture-card lego-project-shell" sx={{ overflow: 'visible' }}>
+          <CardContent sx={{ px: { xs: 1, md: 2 }, py: { xs: 2, md: 3 } }}>
+            <Box className="lego-stud-strip lego-stud-strip--thin" />
+            <Slider {...settings}>
+              {projectList.map((proj) => (
+                <Box key={proj.id} sx={{ p: 2 }}>
+                  <ProjectCard {...proj} />
+                </Box>
+              ))}
+            </Slider>
+          </CardContent>
+        </Card>
       </Container>
     </Box>
   );

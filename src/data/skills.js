@@ -18,6 +18,7 @@ export const skills = {
         { name: "javascript", displayName: { es: "JavaScript", en: "JavaScript" }, icon8Name: "javascript" },
         { name: "react", displayName: { es: "React.js", en: "React.js" }, icon8Name: "react-native" },
         { name: "vue", displayName: { es: "Vue.js", en: "Vue.js" }, icon8Name: "vue-js" },
+        { name: "mui", displayName: { es: "Material UI", en: "Material UI" }, icon8Name: "material-ui" },
         { name: "bootstrap", displayName: { es: "Bootstrap", en: "Bootstrap" }, icon8Name: "bootstrap" },
         { name: "html", displayName: { es: "HTML5", en: "HTML5" }, icon8Name: "html-5" },
         { name: "css", displayName: { es: "CSS3", en: "CSS3" }, icon8Name: "css3" }
@@ -29,7 +30,7 @@ export const skills = {
         { name: "git", displayName: { es: "Git", en: "Git" }, icon8Name: "git" },
         { name: "github", displayName: { es: "GitHub", en: "GitHub" }, icon8Name: "github" },
         { name: "devops", displayName: { es: "Azure DevOps", en: "Azure DevOps" }, icon8Name: "azure-devops", iconUrl: "https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/external-development-experience-through-the-native-integrations-of-azure-with-visual-studio-logo-color-tal-revivo.png" },
-        { name: "visualstudio", displayName: { es: "Visual Studio", en: "Visual Studio" }, icon8Name: "visual-studio" },
+        { name: "scrum", displayName: { es: "Agile / Scrum", en: "Agile / Scrum" }, icon8Name: "sprint-iteration" },
         { name: "linux", displayName: { es: "Linux", en: "Linux" }, icon8Name: "linux" },
         { name: "windows", displayName: { es: "Windows Server", en: "Windows Server" }, icon8Name: "windows-10" }
       ]
@@ -47,7 +48,8 @@ export const skills = {
       category: { es: "Seguridad y Administración", en: "Security & Administration" },
       items: [
         { name: "database-admin", displayName: { es: "Administración de BD", en: "Database Administration" }, icon8Name: "data-configuration" },
-        { name: "security", displayName: { es: "Control de Accesos y Seguridad", en: "Access Control & Security" }, icon8Name: "security-checked" },
+        { name: "security", displayName: { es: "RBAC & LDAP", en: "RBAC & LDAP" }, icon8Name: "security-checked" },
+        { name: "iam", displayName: { es: "Gestión de Accesos (IAM)", en: "Identity & Access (IAM)" }, icon8Name: "key-security" },
         { name: "server-admin", displayName: { es: "Administración de Servidores", en: "Server Administration" }, icon8Name: "server" },
         { name: "windows-services", displayName: { es: "Servicios de Windows", en: "Windows Services" }, icon8Name: "services--v1" }
       ]
@@ -56,16 +58,18 @@ export const skills = {
       category: { es: "Idiomas", en: "Languages" },
       items: [
         { name: "spanish", displayName: { es: "Español (Nativo)", en: "Spanish (Native)" }, icon8Name: "spain" },
-        { name: "english", displayName: { es: "Inglés (C2 - Avanzado)", en: "English (C2 - Proficient)" }, icon8Name: "great-britain" }
+        { name: "english", displayName: { es: "Inglés (B2 Profesional / C2 EF SET)", en: "English (B2 Professional / C2 EF SET)" }, icon8Name: "great-britain" }
       ]
     }
   ],
 
   certifications: [
+    { name: { es: "Foundational C# with Microsoft Certification", en: "Foundational C# with Microsoft Certification" }, issuer: "Microsoft", date: "2026" },
+    { name: { es: "Certificación de IA de Google", en: "Google AI Certification" }, issuer: "Google", date: "2026" },
+    { name: { es: "Scrum Fundamentals Certified", en: "Scrum Fundamentals Certified" }, issuer: "SCRUMStudy", date: "2026" },
     { name: { es: "Developer Certification - HCCDA - Tech Essentials", en: "Developer Certification - HCCDA - Tech Essentials" }, issuer: "Huawei Cloud", date: "2024" },
     { name: { es: "Identity & Access Management (IAM) Bootcamp", en: "Identity & Access Management (IAM) Bootcamp" }, issuer: "Cybolt Academy", date: "2024" },
     { name: { es: "Google Cloud Computing Foundations Academy", en: "Google Cloud Computing Foundations Academy" }, issuer: "Google Cloud", date: "2024" },
-    { name: { es: "Foundational C# with Microsoft Certification", en: "Foundational C# with Microsoft Certification" }, issuer: "Microsoft", date: "2026" },
     { name: { es: "Diplomado en Ciencia de Datos", en: "Diploma in Data Science" }, issuer: "Tecnológico Nacional de México", date: "2024" },
     { name: { es: "First Certificate in English (FCE) - Nivel B1", en: "First Certificate in English (FCE) - Level B1" }, issuer: "Cambridge", date: "2023" },
     { name: { es: "Certificado de Inglés - Nivel B2", en: "English Certificate - Level B2" }, issuer: "CELEX (IPN) & SEP", date: "2024" },

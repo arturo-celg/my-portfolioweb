@@ -56,6 +56,7 @@ export default function ProjectCard(props) {
       transition={{ duration: 0.3 }}
     >
       <Card 
+        className="lego-card lego-architecture-card"
         sx={{ 
           height: '100%',
           display: 'flex',
@@ -66,6 +67,7 @@ export default function ProjectCard(props) {
           boxShadow: 3,
         }}
       >
+        <Box className="lego-stud-strip lego-stud-strip--thin" />
         <Box sx={{ position: 'relative', height: 250 }}>
           {category && (
             <Chip
@@ -80,8 +82,8 @@ export default function ProjectCard(props) {
                 top: 12,
                 left: 12,
                 zIndex: 2,
-                bgcolor: 'rgba(0,0,0,0.6)',
-                color: 'white',
+                bgcolor: (theme) => theme.palette.mode === 'light' ? 'rgba(30,36,48,0.82)' : 'rgba(0,0,0,0.72)',
+                color: 'common.white',
                 '& .MuiChip-label': { fontWeight: 600 }
               }}
             />
@@ -116,16 +118,17 @@ export default function ProjectCard(props) {
                 transition: 'opacity 0.3s',
                 '&:hover': {
                   opacity: 1,
-                  backgroundColor: 'rgba(0,0,0,0.1)',
+                  backgroundColor: 'rgba(0,0,0,0.12)',
                 },
               }}
             >
               <IconButton 
                 onClick={prevImage}
                 sx={{ 
+                  border: '1px solid rgba(255,255,255,0.35)',
                   color: 'white',
-                  bgcolor: 'rgba(0,0,0,0.4)',
-                  '&:hover': { bgcolor: 'rgba(0,0,0,0.6)' },
+                  bgcolor: 'rgba(0,0,0,0.52)',
+                  '&:hover': { bgcolor: 'rgba(0,0,0,0.66)' },
                   ml: 1
                 }}
               >
@@ -134,9 +137,10 @@ export default function ProjectCard(props) {
               <IconButton 
                 onClick={nextImage}
                 sx={{ 
+                  border: '1px solid rgba(255,255,255,0.35)',
                   color: 'white',
-                  bgcolor: 'rgba(0,0,0,0.4)',
-                  '&:hover': { bgcolor: 'rgba(0,0,0,0.6)' },
+                  bgcolor: 'rgba(0,0,0,0.52)',
+                  '&:hover': { bgcolor: 'rgba(0,0,0,0.66)' },
                   mr: 1
                 }}
               >
@@ -178,9 +182,7 @@ export default function ProjectCard(props) {
             gutterBottom 
             fontWeight="bold"
             sx={{
-              background: 'linear-gradient(45deg, #6366F1 30%, #9333EA 90%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
+              color: 'text.primary',
             }}
           >
             {title}
@@ -197,9 +199,12 @@ export default function ProjectCard(props) {
                   label={tech}
                   size="small"
                   sx={{
-                    bgcolor: 'rgba(99, 102, 241, 0.1)',
+                    bgcolor: (theme) => theme.palette.mode === 'light' ? 'rgba(21,101,192,0.10)' : 'rgba(100,181,246,0.18)',
+                    borderColor: 'divider',
                     color: 'primary.main',
-                    '&:hover': { bgcolor: 'rgba(99, 102, 241, 0.2)' },
+                    '&:hover': {
+                      bgcolor: (theme) => theme.palette.mode === 'light' ? 'rgba(21,101,192,0.18)' : 'rgba(100,181,246,0.25)',
+                    },
                   }}
                 />
               </motion.div>
@@ -210,28 +215,28 @@ export default function ProjectCard(props) {
             onClick={() => setExpanded(!expanded)}
             startIcon={                                  // 👈 cambiado a startIcon
               expanded 
-                ? <VisibilityOff sx={{ color: '#9333EA' }} />   
-                : <Visibility sx={{ color: '#6366F1' }} />      
+                ? <VisibilityOff color="primary" />
+                : <Visibility color="primary" />
             }
             endIcon={
               <ExpandMore
                 sx={{
                   transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
                   transition: 'transform 300ms ease',
-                  color: expanded ? '#9333EA' : '#6366F1',
+                  color: 'primary.main',
                 }}
               />
             }
             sx={{
               textTransform: 'none',
-              color: expanded ? '#9333EA' : '#6366F1',
+              color: 'primary.main',
               px: 0,
               mb: 1,
               fontWeight: 600,
               transition: 'color 300ms ease',
               '&:hover': {
                 backgroundColor: 'transparent',
-                color: '#9333EA',
+                color: 'secondary.main',
               },
             }}
           >

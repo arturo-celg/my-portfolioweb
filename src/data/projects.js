@@ -1,6 +1,11 @@
 // work projects
 import monitorImg1 from "../assets/projects/work/TELCEL/monitorAPP1.png";
 import monitorImg2 from "../assets/projects/work/TELCEL/monitorAPP2.png";
+import campaignImg1 from "../assets/projects/work/TELCEL/campAPP1.jpeg";
+import campaignImg2 from "../assets/projects/work/TELCEL/campAPP2.jpeg";
+import campaignImg3 from "../assets/projects/work/TELCEL/campAPP3.jpeg";
+import campaignImg4 from "../assets/projects/work/TELCEL/campAPP4.png";
+import campaignImg5 from "../assets/projects/work/TELCEL/campAPP5.jpeg";
 import vozImg1 from "../assets/projects/work/TELCEL/vozAPP1.png";
 import vozImg2 from "../assets/projects/work/TELCEL/vozAPP2.png";
 import deliveriesImg1 from "../assets/projects/work/TELCEL/deliveryAPP1.png";
@@ -60,6 +65,22 @@ export const projects = [
   },
   {
     id: 2,
+    title: {
+      es: "Sistema de Mensajería de Campañas y Procesamiento de Líneas",
+      en: "Campaign Messaging and Line Processing System"
+    },
+    description: {
+      es: "Diseñé la arquitectura y desarrollé de punta a punta la reingeniería integral de una aplicación heredada de mensajería masiva. Implementé perfiles de acceso basados en roles, mejoras de UI/UX y tablas de control centralizadas en SQL Server para automatizar operaciones por lotes. La optimización de consultas y procesos en segundo plano redujo el procedimiento operativo de hasta 3 días a 1–2 horas (~97%), con alta disponibilidad y trazabilidad.",
+      en: "Designed the architecture and delivered the end-to-end reengineering of a legacy bulk messaging application. Implemented role-based access profiles, UI/UX improvements, and centralized SQL Server control tables to automate batch operations. Database query and background-process optimizations reduced the department's operational procedure from up to 3 days to 1–2 hours (~97%), while providing high availability and full traceability."
+    },
+    images: [campaignImg1, campaignImg2, campaignImg3, campaignImg4, campaignImg5],
+    technologies: ["C#", ".NET 8", "Razor Pages", "SQL Server", "LDAP"],
+    link: "",
+    demo: "",
+    showLink: false,
+  },
+  {
+    id: 3,
     title: { es: "Sistema de Bitácora de Fallas Operativas", en: "Operational Incidents Logging System" },
     description: {
       es: "Sistema para registro, análisis y seguimiento de incidencias operativas en sistemas comerciales. Implementa reglas de negocio para cálculo de impacto y generación de reportes analíticos mediante SSRS.",
@@ -72,7 +93,7 @@ export const projects = [
     showLink: false,
   },
   {
-    id: 3,
+    id: 4,
     title: { es: "Portal de Seguimiento de Deliveries", en: "Deliveries Tracking Portal" },
     description: {
       es: "Portal interno para gestión de oportunidades de licenciamiento y seguimiento de entregables con proveedores. Incluye control de accesos con LDAP para usuarios internos y cuentas genéricas para call center, además de reportes operativos con SSRS.",
@@ -85,7 +106,7 @@ export const projects = [
     showLink: false,
   },
   {
-    id: 4,
+    id: 5,
     title: { es: "Sistema de Registro de Incidentes para Activación de SIMs", en: "SIM Activation Incident Reporting System" },
     description: {
       es: "Formulario web expuesto a internet para reporte de incidencias por distribuidores. Incluye validaciones backend contra inyección de código, técnica honeypot para mitigación de bots y control de acceso mediante validación de IP.",
@@ -98,7 +119,7 @@ export const projects = [
     showLink: false,
   },
   {
-    id: 5,
+    id: 6,
     title: { es: "Sistema de Productividad – Trato Compartido", en: "Shared Channel Productivity System" },
     description: {
       es: "Sistema web interno para el registro y medición de la productividad de asesores en los diferentes trámites gestionados por el área de Trato Compartido. Incluye autenticación mediante LDAP, registro de operaciones, generación de métricas de desempeño y reportes para análisis operativo.",
@@ -111,7 +132,7 @@ export const projects = [
     showLink: false,
   },
   {
-    id: 6,
+    id: 7,
     title: { es: "Portal Central de Aplicaciones del Departamento", en: "Department Applications Portal" },
     description: {
       es: "Portal centralizado para acceso y administración de aplicaciones internas del área. Implementado con React y Material UI en el frontend y .NET Web API en el backend, integrando recursos y documentación del área.",
@@ -124,7 +145,7 @@ export const projects = [
     showLink: false,
   },
   {
-    id: 7,
+    id: 8,
     title: { es: "Portafolio Web Personal", en: "Personal Web Portfolio" },
     description: {
       es: "Portafolio web personal desarrollado con React y Material UI para presentar proyectos, experiencia profesional y habilidades técnicas. Incluye diseño responsivo, animaciones e integración con GitHub Pages.",
@@ -137,7 +158,7 @@ export const projects = [
     showLink: true,
   },
   {
-    id: 8,
+    id: 9,
     title: { es: "Aplicación Pokédex con API", en: "Pokédex API Application" },
     description: {
       es: "Aplicación web desarrollada con React y TypeScript que consume la PokéAPI para visualizar información dinámica de Pokémon. Incluye búsqueda, renderizado dinámico de datos y manejo de estados.",
@@ -150,7 +171,7 @@ export const projects = [
     showLink: false,
   },
   {
-    id: 9,
+    id: 10,
     title: { es: "Aplicaciones de Visualización de Datos en Python", en: "Data Visualization Applications in Python" },
     description: {
       es: "Desarrollo de aplicaciones en Python utilizando Matplotlib y Tkinter para visualización de datos y construcción de interfaces gráficas. Los proyectos incluyen análisis exploratorio y generación de gráficos.",
@@ -163,7 +184,7 @@ export const projects = [
     showLink: false,
   },
   {
-    id: 10,
+    id: 11,
     title: { es: "Simulación Algorítmica de Procesos de Filtración", en: "Algorithmic Simulation of Filtration Processes" },
     description: {
       es: "Proyecto de titulación enfocado en la simulación de técnicas de filtración granular rápida y degradación bacteriana mediante algoritmos implementados en JavaScript. La aplicación web fue estructurada utilizando Vue.js para organizar y visualizar de forma interactiva los resultados de las simulaciones, complementado con análisis estadístico basado en escala Likert para evaluar el nivel de conciencia ambiental.",
@@ -176,7 +197,7 @@ export const projects = [
     showLink: false,
   },
   {
-    id: 11,
+    id: 12,
     title: { es: "Sistema Web para Gestión de Clínica Médica", en: "Medical Clinic Management System" },
     description: {
       es: "Aplicación web full stack desarrollada para la gestión de una clínica médica. El frontend fue construido con React y Material UI para crear interfaces consistentes y responsivas. El backend fue implementado con Express.js y Sequelize para mapear la base de datos relacional en SQL Server y exponer los servicios necesarios para la gestión de pacientes, consultas y registros médicos.",
@@ -189,7 +210,7 @@ export const projects = [
     showLink: false,
   },
   {
-    id: 12,
+    id: 13,
     title: { es: "Instrumentación y Adquisición de Señales", en: "Instrumentation and Signal Acquisition" },
     description: {
       es: "Proyectos académicos de instrumentación electrónica utilizando Arduino y LabVIEW para adquisición, procesamiento y visualización de señales provenientes de sensores.",
